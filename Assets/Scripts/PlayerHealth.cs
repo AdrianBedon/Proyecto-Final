@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int hearts = 3;
-    public int maxHearts = 5;
-    public int sodaLife = 0;
+    public static int hearts = 3;
+    public static int maxHearts = 5;
+    public static int sodaLife = 0;
     [SerializeField] HeartSystem hs;
     [SerializeField] SodaCounter sc;
 
     public void Start()
     {
         hs.DrawHeart(hearts, maxHearts);
+        sc.SetCount(sodaLife);
     }
     // Start is called before the first frame update
     public void TakeDamage(int d)

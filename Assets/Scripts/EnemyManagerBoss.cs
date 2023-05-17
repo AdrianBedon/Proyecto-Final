@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManagerBoss : MonoBehaviour
 {
     public Transform[] m_SpawnPoints;
     public GameObject m_EnemyPrefab;
@@ -18,19 +18,15 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void OnEnable()
     {
-        EnemySystem.OnEnemyKilled += SpawnEnemy;
+        EnemySystemBoss.OnEnemyKilled += SpawnEnemy;
     }
 
     void SpawnEnemy()
     {
-        if (count <= 20)
+        if (count <= 2)
         {
             Instantiate(m_EnemyPrefab, m_SpawnPoints[Random.Range(0, m_SpawnPoints.Length)].transform.position, Quaternion.identity);
             count += 1;
-        }
-        else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
