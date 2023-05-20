@@ -21,12 +21,21 @@ public class EnemyManagerBoss : MonoBehaviour
         EnemySystemBoss.OnEnemyKilled += SpawnEnemy;
     }
 
+    void OnDisable()
+    {
+        EnemySystemBoss.OnEnemyKilled -= SpawnEnemy;
+    }
+
     void SpawnEnemy()
     {
         if (count <= 2)
         {
             Instantiate(m_EnemyPrefab, m_SpawnPoints[Random.Range(0, m_SpawnPoints.Length)].transform.position, Quaternion.identity);
             count += 1;
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }

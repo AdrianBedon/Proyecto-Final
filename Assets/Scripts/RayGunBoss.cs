@@ -12,6 +12,12 @@ public class RayGunBoss : MonoBehaviour
 
     RaycastHit hit;
     float range = 1000.0f;
+    AudioSource m_shootingSound;
+
+    void Start()
+    {
+        m_shootingSound = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,6 +26,7 @@ public class RayGunBoss : MonoBehaviour
         {
             if(Time.time > m_shootRateTimeStamp)
             {
+                m_shootingSound.Play();
                 ShootRay();
                 m_shootRateTimeStamp = Time.time + shootRate;
             }

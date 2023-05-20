@@ -9,6 +9,7 @@ public class Zoom : MonoBehaviour
     [Range(0, 1)]
     public float currentZoom;
     public float sensitivity = 1;
+    [SerializeField] GameObject canvasZoom;
 
 
     void Awake()
@@ -27,5 +28,13 @@ public class Zoom : MonoBehaviour
         currentZoom += Input.mouseScrollDelta.y * sensitivity * .05f;
         currentZoom = Mathf.Clamp01(currentZoom);
         camera.fieldOfView = Mathf.Lerp(defaultFOV, maxZoomFOV, currentZoom);
+        if (currentZoom == 1)
+        {
+            canvasZoom.SetActive(true);
+        }
+        else
+        {
+            canvasZoom.SetActive(false);
+        }
     }
 }

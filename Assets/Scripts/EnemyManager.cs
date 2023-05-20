@@ -21,6 +21,11 @@ public class EnemyManager : MonoBehaviour
         EnemySystem.OnEnemyKilled += SpawnEnemy;
     }
 
+    void OnDisable()
+    {
+        EnemySystem.OnEnemyKilled -= SpawnEnemy;
+    }
+
     void SpawnEnemy()
     {
         if (count <= 20)

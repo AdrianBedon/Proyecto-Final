@@ -10,6 +10,7 @@ public class EnemySystemBoss : MonoBehaviour
     public delegate void EnemyKilled();
     public static event EnemyKilled OnEnemyKilled;
     public GameObject collisionExplosion;
+    public GameObject objectTrash;
     Animator anim;
 
 	// Use this for initialization
@@ -64,6 +65,10 @@ public class EnemySystemBoss : MonoBehaviour
             GameObject explosion = (GameObject)Instantiate(collisionExplosion, transform.position, transform.rotation);
             Destroy(gameObject);
             Destroy(explosion, 1f);
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject trash = (GameObject)Instantiate(objectTrash, transform.position, transform.rotation);
+            }
         }
         if(OnEnemyKilled != null)
         {
